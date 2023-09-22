@@ -36,8 +36,8 @@ export const FormResetPassword = () => {
     const ObjectData = { ...data, _id: id as string }
     if (!isLoading) {
       mutate(ObjectData, {
-        onSuccess: (data) => {
-          console.log(data)
+        onSuccess: () => {
+          
           setToggle(false)
           navigate(path.login)
         },
