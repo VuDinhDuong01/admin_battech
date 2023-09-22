@@ -1,0 +1,6 @@
+export * from './generalType.types'
+export * from './topic.types'
+export * from './user.types'
+export * from './author.types'
+export * from './tag.types'
+export * from './post.types'
