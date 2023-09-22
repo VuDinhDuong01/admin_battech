@@ -1,2 +1,2 @@
 
-export const baseURL='http://localhost:5000/'
+export const baseURL='https://battech-api.onrender.com/'
