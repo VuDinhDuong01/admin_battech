@@ -1,2 +1,2 @@
 
-export const baseURL='https://battech-api.onrender.com/'
+export const baseURL='https://api-battech.onrender.com/'
