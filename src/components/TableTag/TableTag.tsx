@@ -1,6 +1,7 @@
 import { useContext } from "react"
 
 import { Theme } from "~/hook"
+import { CustomCheckAll, CustomCheckBox } from "~/hook/useCheckBox"
 import { TagType } from "~/types/index.types"
 import { Images } from '~/utils'
 interface TableTagType {
@@ -14,21 +15,10 @@ interface TableTagType {
 export const TableTag = ({ handleUpdateTag, dataTag, checkBox, setCheckBox }: TableTagType) => {
   const { setToggle, setIdDelete } = useContext(Theme)
   const handleCheckAll = () => {
-    if (dataTag.length === checkBox.length && dataTag.length !== 0) {
-      setCheckBox([])
-    } else {
-      setCheckBox(dataTag.map(item => item._id))
-    }
+    CustomCheckAll({ checkBox, setCheckBox, data: dataTag })
   }
   const handleCheckBox = (_id: string) => {
-    setCheckBox(prev => {
-      const checked = checkBox.includes(_id)
-      if (checked) {
-        return prev.filter(item => item !== _id)
-      } else {
-        return [...prev, _id]
-      }
-    })
+    CustomCheckBox({_id,setCheckBox, checkBox})
   }
   return (
     <table className=" border mt-[16px]  w-full table-fixed border-collapse border border-gray-300">

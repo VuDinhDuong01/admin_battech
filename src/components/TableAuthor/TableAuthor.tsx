@@ -1,6 +1,7 @@
 import { useContext } from "react"
 
 import { Theme } from "~/hook"
+import { CustomCheckAll, CustomCheckBox } from "~/hook/useCheckBox"
 import { AuthorType } from "~/types/author.types"
 import { Images } from "~/utils"
 
@@ -15,21 +16,10 @@ interface TableAuthorType {
 export const TableAuthor = ({ handleUpdateAuthor, dataAuthor,checkBox,setCheckBox }: TableAuthorType) => {
   const { setToggle, setIdDelete } = useContext(Theme)
   const handleCheckAll = () => {
-    if (dataAuthor.length === checkBox.length && dataAuthor.length !== 0) {
-      setCheckBox([])
-    } else {
-      setCheckBox(dataAuthor.map(item => item._id))
-    }
+    CustomCheckAll({ checkBox, setCheckBox, data: dataAuthor })
   }
   const handleCheckBox = (_id: string) => {
-    setCheckBox(prev => {
-      const checked = checkBox.includes(_id)
-      if (checked) {
-        return prev.filter(item => item !== _id)
-      } else {
-        return [...prev, _id]
-      }
-    })
+    CustomCheckBox({_id,setCheckBox, checkBox})
   }
   
   return (

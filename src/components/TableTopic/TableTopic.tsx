@@ -1,6 +1,7 @@
 import { useContext } from "react"
 
 import { Theme } from "~/hook"
+import { CustomCheckAll, CustomCheckBox } from "~/hook/useCheckBox"
 import { TopicType } from "~/types/topic.types"
 import { Images } from "~/utils/Image"
 
@@ -14,21 +15,11 @@ interface TableTopicType {
 export const TableTopic = ({ handleUpdateTopic, dataTopic, setCheckBox, checkBox }: TableTopicType) => {
   const { setToggle, setIdDelete } = useContext(Theme)
   const handleCheckAll = () => {
-    if (dataTopic.length === checkBox.length && dataTopic.length !== 0) {
-      setCheckBox([])
-    } else {
-      setCheckBox(dataTopic.map(item => item._id))
-    }
+    CustomCheckAll({ checkBox, setCheckBox, data: dataTopic })
+
   }
   const handleCheckBox = (_id: string) => {
-    setCheckBox(prev => {
-      const checked = checkBox.includes(_id)
-      if (checked) {
-        return prev.filter(item => item !== _id)
-      } else {
-        return [...prev, _id]
-      }
-    })
+    CustomCheckBox({ _id, setCheckBox, checkBox })
   }
   return (
     <table className=" border mt-[16px]  w-full table-fixed border-collapse border border-gray-300">

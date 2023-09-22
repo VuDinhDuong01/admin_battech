@@ -1,6 +1,7 @@
 import { useContext } from "react"
 
 import { Theme } from "~/hook"
+import { CustomCheckAll, CustomCheckBox } from "~/hook/useCheckBox"
 import { PostType } from "~/types/post.types"
 import { Images, getHouse } from "~/utils/index"
 
@@ -15,21 +16,10 @@ export const TablePost = ({ handleUpdatePost, dataPost, setCheckBox, checkBox }:
   const { setToggle, setIdDelete } = useContext(Theme)
 
   const handleCheckAll = () => {
-    if (dataPost.length === checkBox.length && dataPost.length !== 0) {
-      setCheckBox([])
-    } else {
-      setCheckBox(dataPost.map(item => item._id))
-    }
+    CustomCheckAll({ checkBox, setCheckBox, data: dataPost })
   }
   const handleCheckBox = (_id: string) => {
-    setCheckBox(prev => {
-      const checked = checkBox.includes(_id)
-      if (checked) {
-        return prev.filter(item => item !== _id)
-      } else {
-        return [...prev, _id]
-      }
-    })
+    CustomCheckBox({ _id, setCheckBox, checkBox })
   }
   return (
     <table className=" mt-[16px]  w-full   border border-gray-300">
