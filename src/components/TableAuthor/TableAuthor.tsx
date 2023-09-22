@@ -9,7 +9,6 @@ interface TableAuthorType {
   handleUpdateAuthor: (author_id: string) => void,
   dataAuthor: AuthorType[]
   checkBox: string[]
-
   setCheckBox: React.Dispatch<React.SetStateAction<string[]>>
 }
 
